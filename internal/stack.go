@@ -79,7 +79,7 @@ func (s *Stack) Pop() interface{} {
 
 // Peek returns the "topmost" screen of the stack without popping it
 func (s *Stack) Peek() interface{} {
-	return s.head
+	return &s.head.element
 }
 
 // Count returns the current number of elements on the stack
