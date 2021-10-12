@@ -26,7 +26,7 @@ func NewStack() Stack {
 	}
 }
 
-// Push adds a new screen to the top of the stack and returns the pointer to the screen
+// Push adds a new container to the top of the stack and returns the pointer to the element
 func (s *Stack) Push(data interface{}) interface{} {
 	s.mutex.Lock()
 	defer s.mutex.Unlock()
@@ -57,7 +57,7 @@ func (s *Stack) Push(data interface{}) interface{} {
 	return &newContainer.element
 }
 
-// Pop removes the "topmost" screen from the stack
+// Pop removes the "topmost" container from the stack and returns the element
 func (s *Stack) Pop() interface{} {
 	s.mutex.Lock()
 	defer s.mutex.Unlock()
@@ -77,12 +77,12 @@ func (s *Stack) Pop() interface{} {
 	return ele.element
 }
 
-// Peek returns the "topmost" screen of the stack without popping it
+// Peek returns the "topmost" container element of the stack without popping it
 func (s *Stack) Peek() interface{} {
-	return &s.head.element
+	return s.head.element
 }
 
-// Count returns the current number of elements on the stack
+// Count returns the current number of containers on the stack
 func (s *Stack) Count() int {
 	return len(s.containers)
 }

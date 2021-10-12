@@ -38,8 +38,12 @@ func main() {
 	someValue := "this is cool"
 	s.Push(&someValue)
 
+	peeked := s.Peek().(*string)
+	fmt.Println(fmt.Sprintf("Peek ptr: %d, value %s", peeked, *peeked))
+	*peeked = "pew pew"
+
 	strPtr := s.Pop().(*string)
-	fmt.Println(fmt.Sprintf("ptr: %d, val: %s", strPtr, *strPtr))
+	fmt.Println(fmt.Sprintf("Pop ptr: %d, val: %s", strPtr, *strPtr))
 
 	//ui := internal.NewUIManager()
 	//go ui.Render()
