@@ -1,11 +1,13 @@
 package internal
 
+import "sync"
+
 type (
 	Stack struct {
 		containers []stackContainer
 		head       *stackContainer
 		tail       *stackContainer
-		//mutex      sync.Mutex
+		mutex      sync.Mutex
 	}
 
 	stackContainer struct {
@@ -26,8 +28,8 @@ func NewStack() Stack {
 
 // Push adds a new screen to the top of the stack and returns the pointer to the screen
 func (s *Stack) Push(data interface{}) interface{} {
-	//s.mutex.Lock()
-	//defer s.mutex.Unlock()
+	s.mutex.Lock()
+	defer s.mutex.Unlock()
 
 	newContainer := stackContainer{
 		element: data,
@@ -57,8 +59,8 @@ func (s *Stack) Push(data interface{}) interface{} {
 
 // Pop removes the "topmost" screen from the stack
 func (s *Stack) Pop() interface{} {
-	//s.mutex.Lock()
-	//defer s.mutex.Unlock()
+	s.mutex.Lock()
+	defer s.mutex.Unlock()
 
 	if s.head == s.tail {
 		ele := s.tail.element
