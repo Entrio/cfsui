@@ -22,7 +22,7 @@ func NewStack() Stack {
 		containers: make([]stackContainer, 0),
 		head:       nil,
 		tail:       nil,
-		//mutex:      sync.Mutex{},
+		mutex:      sync.Mutex{},
 	}
 }
 
